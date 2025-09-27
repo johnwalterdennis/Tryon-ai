@@ -115,8 +115,8 @@ async def generate_image(
         "url": f"/{output_path}"
     }
     
-@app.get("/get-premade-outfit-thumbnails")
-async def get_premade_outfit_thumbnails():
+@app.get("/get-premade-outfit-details")
+async def get_premade_outfit_details():
     with open("items.json", "r") as f:
         res = json.load(f)
     return res
