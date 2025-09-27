@@ -26,6 +26,10 @@ def read_root():
 
 @app.post("/upload/")
 async def upload_image(file: UploadFile = File(...)):
+    # create the selfie directory if it doesn't exist
+    if not os.path.exists(USER_UPLOAD_DIR):
+        os.makedirs(USER_UPLOAD_DIR)
+        
     file_ext = os.path.splitext(file.filename)[1]
     temp_filename = f"{uuid.uuid4().hex}{file_ext}"
     file_path = os.path.join(USER_UPLOAD_DIR, temp_filename)
@@ -37,11 +41,19 @@ async def upload_image(file: UploadFile = File(...)):
 
 @app.post("/upload-selfie/")
 async def upload_selfie(file: UploadFile = File(...)):
+    # create the user directory if it doesn't exist
+    if not os.path.exists(SELFIE_UPLOAD_DIR):
+        os.makedirs(SELFIE_UPLOAD_DIR)
+        
     # delete old selfies first
     for existing_file in os.listdir(SELFIE_UPLOAD_DIR):
         os.remove(os.path.join(SELFIE_UPLOAD_DIR, existing_file))
         
         
+    # create the selfie directory if it doesn't exist
+    if not os.path.exists(SELFIE_UPLOAD_DIR):
+        os.makedirs(SELFIE_UPLOAD_DIR)
+    
     # new selfie
     file_ext = os.path.splitext(file.filename)[1]
     temp_filename = f"selfie{file_ext}"
