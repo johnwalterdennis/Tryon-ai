@@ -87,7 +87,7 @@ export default function Checkout() {
           <label className="text-sm">
             Address
             <input
-              className="input"
+              className="input bg-white"
               value={fields.address}
               onChange={onChange("address")}
               autoComplete="street-address"
@@ -97,16 +97,16 @@ export default function Checkout() {
             <label className="text-sm col-span-2">
               City
               <input
-                className="input"
+                className="input bg-white"
                 value={fields.city}
                 onChange={onChange("city")}
                 autoComplete="address-level2"
               />
             </label>
-            <label className="text-sm">
+            <label className="text-sm ">
               State
               <input
-                className="input"
+                className="input bg-white"
                 value={fields.state}
                 onChange={onChange("state")}
                 autoComplete="address-level1"
@@ -116,7 +116,7 @@ export default function Checkout() {
           <label className="text-sm">
             ZIP
             <input
-              className="input"
+              className="input bg-white"
               value={fields.zip}
               onChange={onChange("zip")}
               autoComplete="postal-code"
@@ -127,7 +127,7 @@ export default function Checkout() {
         <div className="flex items-center gap-2">
           <input
             placeholder="Promo code"
-            className="w-40 rounded-md border px-3 py-2"
+            className="w-40 rounded-md border px-3 py-2 bg-white"
             value={promo}
             onChange={(e) => setPromo(e.target.value)}
           />
