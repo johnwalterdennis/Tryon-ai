@@ -44,12 +44,15 @@ async def upload_selfie(file: UploadFile = File(...)):
         
     # new selfie
     file_ext = os.path.splitext(file.filename)[1]
-    temp_filename = f"{uuid.uuid4().hex}{file_ext}"
+    temp_filename = f"selfie{file_ext}"
     file_path = os.path.join(SELFIE_UPLOAD_DIR, temp_filename)
 
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
         
+    
+    # update the global user selfie path
+    global current_user_selfie_path
     current_user_selfie_path = file_path
     
     return {"filename": temp_filename, "url": file_path}
