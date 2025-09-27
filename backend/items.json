@@ -1,38 +1,38 @@
 {
     "outfit_0": {
-        "price": 100,
+        "price": 329.99,
         "thumbnail_url": "http://localhost:8000/static/premade/outfit_0/thumbnail.jpg",
         "vendor": "Zara",
-        "description": "A stylish outfit for a night out"
+        "description": "A chic and modern ensemble perfect for making a statement on a night out."
     },
     "outfit_1": {
-        "price": 200,
+        "price": 42.99,
         "thumbnail_url": "http://localhost:8000/static/premade/outfit_1/thumbnail.jpg",
         "vendor": "Uniqlo",
-        "description": "A stylish outfit for a day out"
+        "description": "A laid-back and versatile look featuring a cozy sweater paired with classic jeans, perfect for casual outings or relaxed weekends."
     },
     "outfit_2": {
-        "price": 300,
+        "price": 224.99,
         "thumbnail_url": "http://localhost:8000/static/premade/outfit_2/thumbnail.jpg",
         "vendor": "Zara",
-        "description": "A stylish outfit for a day out"
+        "description": "A one-piece asymmetric tulle top paired with sleek leather shorts for a bold, modern look."
     },
     "outfit_3": {
-        "price": 400,
+        "price": 159.49,
         "thumbnail_url": "http://localhost:8000/static/premade/outfit_3/thumbnail.jpg",
         "vendor": "Zara",
-        "description": "A stylish outfit for a day out"
+        "description": "A simple and elegant midi dress that's perfect for casual outings or a relaxed day out."
     },
     "outfit_4": {
-        "price": 500,
+        "price": 379.99,
         "thumbnail_url": "http://localhost:8000/static/premade/outfit_4/thumbnail.webp",
-        "vendor": "Zara",
-        "description": "A stylish outfit for a day out"
+        "vendor": "House of CB",
+        "description": "A stylish and elegant dress that's perfect for a night out or a special occasion."
     },
     "outfit_5": {
-        "price": 600,
+        "price": 299.99,
         "thumbnail_url": "http://localhost:8000/static/premade/outfit_5/thumbnail.jpg",
-        "vendor": "Zara",
-        "description": "A stylish outfit for a day out"
+        "vendor": "H&M",
+        "description": "A classic beige trench coat featuring a double-breasted design and a belted waist, perfect for timeless style and versatile layering."
     }
 }
