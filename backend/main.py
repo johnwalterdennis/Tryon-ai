@@ -171,9 +171,11 @@ async def get_premade_outfit_details():
     return res
 
 @app.get("/get-generated-outfit")
-async def get_generated_outfit(outfit: str = Form("outfit_0")):
-    base_url = "http://localhost:8000"
-    res = base_url + "/static/outputs/premade/{outfit}.png"
-    if os.path.exists(res):
-        return res
+async def get_generated_outfit(outfit: str = ""):
+    base_url = "http://localhost:8000/"
+    filepath = f"static/outputs/premade/{outfit}.png"
+    res = base_url + filepath
+    if os.path.exists(filepath):
+        print(filepath)
+        return {"url" : res}
     return None
