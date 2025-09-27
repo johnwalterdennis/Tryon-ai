@@ -2,18 +2,18 @@ from google import genai
 from google.genai import types
 from PIL import Image
 from io import BytesIO
-import base64
 from dotenv import load_dotenv
 import os
 from typing import List
 from fastapi import UploadFile
 
-async def generate_fashion_image(file_paths: List[str], output_dir: str, output_image_filename: str) -> str:
+def generate_fashion_image(file_paths: List[str], output_dir: str, output_image_filename: str) -> str:
     """
     Resizes input images to 1080p scale, sends them with a text prompt to Gemini,
     and saves the generated images. Returns the generated image path.
     """
 
+    print("generating image now")
     load_dotenv()
     NANO_BANANA_API_KEY = os.getenv("NANO_BANANA_API_KEY")
     client = genai.Client(api_key=NANO_BANANA_API_KEY)
