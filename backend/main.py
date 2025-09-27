@@ -4,6 +4,7 @@ from fastapi.responses import FileResponse, JSONResponse
 import uuid
 import shutil
 import os
+from typing import List
 
 
 app = FastAPI()
@@ -11,6 +12,7 @@ app = FastAPI()
 USER_UPLOAD_DIR = "static/user_uploads"
 SELFIE_UPLOAD_DIR = "static/selfie_uploads"
 current_user_selfie_path = None
+custom_outfit_counter = 0
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,21 +26,35 @@ app.add_middleware(
 def read_root():
     return {"message": "Hello World"}
 
+
+
+# list of files upload
 @app.post("/upload/")
-async def upload_image(file: UploadFile = File(...)):
-    # create the selfie directory if it doesn't exist
+async def upload_image(files: List[UploadFile] = File(...)):
+    global custom_outfit_counter
+    # create the user upload directory if it doesn't exist
     if not os.path.exists(USER_UPLOAD_DIR):
         os.makedirs(USER_UPLOAD_DIR)
-        
-    file_ext = os.path.splitext(file.filename)[1]
-    temp_filename = f"{uuid.uuid4().hex}{file_ext}"
-    file_path = os.path.join(USER_UPLOAD_DIR, temp_filename)
-
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
     
-    return {"filename": temp_filename, "url": file_path}
+    # create the outfit group directory
+    outfit_group_dir = os.path.join(USER_UPLOAD_DIR, f"outfit_{custom_outfit_counter}")
+    if not os.path.exists(outfit_group_dir):
+        os.makedirs(outfit_group_dir)
+    custom_outfit_counter += 1
+    
+    for file in files:
+        file_ext = os.path.splitext(file.filename)[1]
+        temp_filename = f"{uuid.uuid4().hex}{file_ext}"
+        file_path = os.path.join(outfit_group_dir, temp_filename)
 
+        with open(file_path, "wb") as buffer:
+            shutil.copyfileobj(file.file, buffer)
+    
+    return {"url": outfit_group_dir}
+
+
+
+# single file upload
 @app.post("/upload-selfie/")
 async def upload_selfie(file: UploadFile = File(...)):
     # create the user directory if it doesn't exist
