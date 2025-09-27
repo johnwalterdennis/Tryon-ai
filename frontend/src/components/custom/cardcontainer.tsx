@@ -10,7 +10,7 @@ type Outfit = {
 
 type OutfitsResponse = Record<string, Outfit>;
 
-export default function Card() {
+export default function CardContainer() {
   const [outfits, setOutfits] = useState<OutfitsResponse>({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
