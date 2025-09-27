@@ -8,7 +8,7 @@ import os
 from typing import List
 from fastapi import UploadFile
 
-def generate_fashion_image(files: List[UploadFile], output_dir: str, output_image_filename: str) -> str:
+async def generate_fashion_image(file_paths: List[str], output_dir: str, output_image_filename: str) -> str:
     """
     Resizes input images to 1080p scale, sends them with a text prompt to Gemini,
     and saves the generated images. Returns the generated image path.
@@ -26,21 +26,18 @@ def generate_fashion_image(files: List[UploadFile], output_dir: str, output_imag
 
     # Load images
     contents = []
-    for file in files:
-        img = Image.open(BytesIO(file.file.read()))
-        # Figure out scaling factor
-        w, h = img.size
-        scale = 1080 / min(w, h)
+    for path in file_paths:
+        with Image.open(path) as img:
+            w, h = img.size
+            scale = 1080 / min(w, h)
+            new_w, new_h = int(w * scale), int(h * scale)
+            resized_img = img.resize((new_w, new_h), Image.Resampling.LANCZOS)
 
-        new_w, new_h = int(w * scale), int(h * scale)
-        resized_img = img.resize((new_w, new_h), Image.Resampling.LANCZOS)
-
-        # Convert to bytes
-        buffer = BytesIO()
-        resized_img.save(buffer, format="WEBP")
-        image_bytes = buffer.getvalue()
-
-        contents.append(types.Part.from_bytes(data=image_bytes, mime_type="image/webp"))
+            # Convert to bytes
+            buffer = BytesIO()
+            resized_img.save(buffer, format="WEBP")
+            image_bytes = buffer.getvalue()
+            contents.append(types.Part.from_bytes(data=image_bytes, mime_type="image/webp"))
 
     # add text input
     contents.append(text_input)
