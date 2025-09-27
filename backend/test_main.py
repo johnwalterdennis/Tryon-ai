@@ -1,15 +1,9 @@
-import requests
+import httpx
+import asyncio
 
-url = "http://127.0.0.1:8000/generate-image/"
+async def test():
+    async with httpx.AsyncClient() as client:
+        r = await client.put("http://127.0.0.1:8000/generate-all-premade-outfits")
+        print(r.json())
 
-file_paths = ["pranjal.webp", "suit_jacket.jpg", "suit_pants.webp"]
-files = [("files", (path, open(path, "rb"), "image/webp")) for path in file_paths]
-
-data = {
-    "premade": "false",
-    "image_name": "suited_pranjal"
-}
-
-response = requests.post(url, files=files, data=data)
-
-print(response.json())
+asyncio.run(test())
