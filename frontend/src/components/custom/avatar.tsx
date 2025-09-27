@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function Avatar() {
+type Property = {
+  selectedOutfitID: string | undefined;
+};
+
+export default function Avatar({selectedOutfitID} : Property) {
     const [avatar, setAvatar] = useState<string | undefined>(undefined);
 
     useEffect(()=>{
-        //TODO: fetch avatar and update avatar state
-    }, []);
+        console.log(selectedOutfitID)
+    }, [selectedOutfitID]);
 
     return(
         <div className="h-full">
