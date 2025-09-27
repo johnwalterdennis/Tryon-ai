@@ -22,7 +22,7 @@ export default function Checkout() {
 
   // Example cart; replace with your real data/store
   const cart: CartItem[] = [
-    { id: "tee", name: "Zara", price: 249.99, qty: 1 },
+    { id: "tee", name: "Zara", price: 249.99, qty: 1 }
   ];
 
   const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
