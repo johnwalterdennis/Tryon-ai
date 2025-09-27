@@ -1,8 +1,38 @@
 {
     "outfit_0": {
         "price": 100,
-        "thumbnail_url": "/static/premade/outfit_0/thumbnail.jpg",
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_0/thumbnail.jpg",
         "vendor": "Zara",
         "description": "A stylish outfit for a night out"
+    },
+    "outfit_1": {
+        "price": 200,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_1/thumbnail.jpg",
+        "vendor": "Uniqlo",
+        "description": "A stylish outfit for a day out"
+    },
+    "outfit_2": {
+        "price": 300,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_2/thumbnail.jpg",
+        "vendor": "Zara",
+        "description": "A stylish outfit for a day out"
+    },
+    "outfit_3": {
+        "price": 400,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_3/thumbnail.jpg",
+        "vendor": "Zara",
+        "description": "A stylish outfit for a day out"
+    },
+    "outfit_4": {
+        "price": 500,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_4/thumbnail.webp",
+        "vendor": "Zara",
+        "description": "A stylish outfit for a day out"
+    },
+    "outfit_5": {
+        "price": 600,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_5/thumbnail.jpg",
+        "vendor": "Zara",
+        "description": "A stylish outfit for a day out"
     }
 }
