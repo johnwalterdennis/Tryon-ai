@@ -219,3 +219,8 @@ __marimo__/
 # static files
 static/user_uploads/
 static/selfie_uploads/
+
+#packages
+node_modules/
+package-lock.json
+package.json

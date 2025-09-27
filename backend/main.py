@@ -20,7 +20,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 USER_UPLOAD_DIR = "static/user_uploads"
 SELFIE_UPLOAD_DIR = "static/selfie_uploads"
-CURRENT_USER_SELFIE_PATH = "static/pranjal.webp"
+CURRENT_USER_SELFIE_PATH = "static/selfie_uploads/wes.jpg"
 custom_outfit_counter = 0
 PREMADE_OUTFIT_THUMBNAIL_DIR = "static/premade/thumbnails"
 CUSTOM_OUTFIT_THUMBNAIL_DIR = "static/custom/thumbnails"
@@ -100,10 +100,9 @@ async def upload_selfie(file: UploadFile = File(...)):
 @app.post("/generate-image/")
 async def generate_image(
     files: List[UploadFile] = File(...),
-    premade: bool = Form(True),
     image_name: str = Form("temp")
 ):
-    output_dir = "static/outputs/premade" if premade else "static/outputs/custom"
+    output_dir = "static/outputs/custom"
 
     output_path = generate_fashion_image(files, output_dir=output_dir, output_image_filename=image_name)
 
@@ -130,17 +129,13 @@ async def generate_all_premade_outfits():
     # print(f"outfit_dirs: {outfit_dirs}")
 
     async def process_outfit(outfit_dir):
-        print(f"processing {outfit_dir}")
-
         outfit_path = os.path.join(input_base_dir, outfit_dir, "images")
-        image_files = [
+        image_files = sorted([
             os.path.join(outfit_path, f)
             for f in os.listdir(outfit_path)
             if f.lower().endswith((".jpg", ".jpeg", ".png", ".webp")) and f != "thumbnail.jpg"
-        ]
+        ])
         image_files = [CURRENT_USER_SELFIE_PATH] + image_files
-
-        print(f"image_files: {image_files}")
 
         if len(image_files) <= 1:
             return None
@@ -155,8 +150,6 @@ async def generate_all_premade_outfits():
             output_image_filename=output_filename
         )
 
-        print(f"output_path: {output_path}")
-
         return {
             "outfit_dir": outfit_dir,
             "output_path": output_path,
@@ -167,8 +160,6 @@ async def generate_all_premade_outfits():
     tasks = [process_outfit(d) for d in outfit_dirs]
     results = await asyncio.gather(*tasks)
 
-    print(results)
-
     generated_outputs = [r for r in results if r]
 
     return {"generated_outputs": generated_outputs}
@@ -178,3 +169,11 @@ async def get_premade_outfit_details():
     with open("items.json", "r") as f:
         res = json.load(f)
     return res
+
+@app.get("/get-generated-outfit")
+async def get_generated_outfit(outfit: str = Form("outfit_0")):
+    base_url = "http://localhost:8000"
+    res = base_url + "/static/outputs/premade/{outfit}.png"
+    if os.path.exists(res):
+        return res
+    return None
