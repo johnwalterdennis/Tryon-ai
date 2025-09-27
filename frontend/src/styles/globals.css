@@ -7,3 +7,13 @@
   --color-green: #274E30;
 }
 
+@layer components {
+  .input {
+    @apply mt-1 w-full rounded-md border px-3 py-2
+  }
+
+  .largeInput {
+    @apply mt-4 text-lg font-semibold
+  }
+
+}
