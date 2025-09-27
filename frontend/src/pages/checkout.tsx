@@ -68,7 +68,7 @@ export default function Checkout() {
           <label className="text-sm">
             Name
             <input
-              className="input"
+              className="input bg-white"
               value={fields.name}
               onChange={onChange("name")}
               autoComplete="name"
@@ -77,7 +77,7 @@ export default function Checkout() {
           <label className="text-sm">
             Email
             <input
-              className="input"
+              className="input bg-white"
               value={fields.email}
               onChange={onChange("email")}
               autoComplete="email"
