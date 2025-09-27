@@ -22,8 +22,7 @@ export default function Checkout() {
 
   // Example cart; replace with your real data/store
   const cart: CartItem[] = [
-    { id: "tee", name: "Basic Tee", price: 24, qty: 2 },
-    { id: "jeans", name: "Slim Jeans", price: 68, qty: 1 },
+    { id: "tee", name: "Zara", price: 249.99, qty: 1 },
   ];
 
   const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
@@ -151,7 +150,7 @@ export default function Checkout() {
       </div>
 
       {/* Summary */}
-      <div className="rounded-lg border p-4">
+      <div className="rounded-lg border p-4 bg-white">
         <h2 className="mb-3 text-lg font-semibold">Order summary</h2>
         <ul className="divide-y">
           {cart.map((item) => (
@@ -164,6 +163,7 @@ export default function Checkout() {
             </li>
           ))}
         </ul>
+         <hr className="border-black-300 my-4"></hr>
         <div className="mt-4 space-y-1 text-sm">
           <div className="flex justify-between">
             <span>Subtotal</span>
