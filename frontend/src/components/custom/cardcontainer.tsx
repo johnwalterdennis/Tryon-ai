@@ -40,17 +40,22 @@ export default function CardContainer() {
   if (error) return <div className="text-red-600">Error: {error}</div>;
 
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-1">
       {Object.entries(outfits).map(([key, outfit]) => (
-        <article key={key} className="rounded-xl border bg-white p-6 shadow">
+        <article
+          key={key}
+          className="rounded-xl border bg-white p-4 shadow flex"
+        >
           <img
             src={`${outfit.thumbnail_url}`}
             alt={outfit.description}
-            className="h-48 w-full rounded-lg object-cover"
+            className="h-48 aspect-square rounded-lg object-contain"
           />
-          <h3 className="mt-4 text-lg font-semibold">{outfit.vendor}</h3>
-          <p className="mt-2 text-sm text-gray-600">{outfit.description}</p>
-          <p className="mt-3 font-bold">${outfit.price}</p>
+          <div className="flex flex-col">
+            <h3 className="mt-4 text-lg font-semibold">{outfit.vendor}</h3>
+            <p className="mt-2 text-sm">{outfit.description}</p>
+            <p className="mt-3 text-gray-500 font-sans">${outfit.price}</p>
+          </div>
         </article>
       ))}
     </div>
