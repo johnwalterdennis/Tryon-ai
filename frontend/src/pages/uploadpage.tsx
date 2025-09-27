@@ -9,6 +9,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import Link from "next/link";
+
 
 export default function UploadPage() {
   const router = useRouter();
@@ -70,7 +72,7 @@ export default function UploadPage() {
   return (
     <div className="p-6">
       <Dialog open={open} onOpenChange={(v) => setOpen(v)}>
-        <DialogContent className="sm:max-w-lg">
+        <DialogContent className="sm:max-w-lg" lock>
           <DialogHeader>
             <DialogTitle>Upload a photo</DialogTitle>
           </DialogHeader>
@@ -113,15 +115,17 @@ export default function UploadPage() {
             onChange={(e) => onFiles(e.target.files)}
           />
 
-          <div className="mt-4 flex justify-end gap-2">
+          <div className="mt-4 flex justify-end gap-2" id = "Continue button">
             <button
               onClick={handleConfirm}
               disabled={!file}
               className={`rounded-xl px-4 py-2 text-sm text-white ${
-                file ? "bg-black hover:opacity-90" : "bg-gray-400"
+                file ? "bg-black hover:opacity-90" : "bg-darkpink"
               }`}
             >
+            <Link href="/tryon" >
               Continue
+            </Link>
             </button>
           </div>
         </DialogContent>

@@ -22,7 +22,7 @@ export default function Home() {
           />
         </p>
         <Link
-          href="/tryon"
+          href="/uploadpage"
           className="rounded-xl bg-darkpink px-12 py-4 hover:scale-105 transition-all text-white text-2xl font-bold"
         >
           Try now
