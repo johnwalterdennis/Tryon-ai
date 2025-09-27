@@ -169,3 +169,11 @@ async def get_premade_outfit_details():
     with open("items.json", "r") as f:
         res = json.load(f)
     return res
+
+@app.get("/get-generated-outfit")
+async def get_generated_outfit(outfit: str = Form("outfit_0")):
+    base_url = "http://localhost:8000"
+    res = base_url + "/static/outputs/premade/{outfit}.png"
+    if os.path.exists(res):
+        return res
+    return None
