@@ -10,7 +10,7 @@ export default function Avatar() {
     return(
         <div>
             {
-                !avatar ? <div></div> : <img src="" alt="hi"/>
+                !avatar ? <div className="bg-darkpink/20 w-48 h-48 rounded-2xl"></div> : <img src="" alt="hi"/>
             }
         </div>
     )
