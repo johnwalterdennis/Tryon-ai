@@ -13,7 +13,6 @@ export default function TryOn() {
       <div className="w-[50%]">
         <ViewToggle activeView={view} setView={setView} />
         {view === 'curated' ? <Curated /> : <Custom />}
-        <Curated />
       </div>
       <div className="w-[50%]">Avatar</div>
     </div>

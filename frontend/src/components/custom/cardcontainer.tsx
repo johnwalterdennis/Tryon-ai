@@ -44,7 +44,7 @@ export default function CardContainer() {
       {Object.entries(outfits).map(([key, outfit]) => (
         <article key={key} className="rounded-xl border bg-white p-6 shadow">
           <img
-            src={`http://localhost:8000${outfit.thumbnail_url}`}
+            src={`${outfit.thumbnail_url}`}
             alt={outfit.description}
             className="h-48 w-full rounded-lg object-cover"
           />
