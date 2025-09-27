@@ -32,7 +32,7 @@ export default function Avatar({ selectedOutfitID }: Property) {
     <div className="h-full">
       <div className="flex w-full h-full justify-center items-center">
         <div className="bg-darkpink/20 w-[32rem] h-[76.5%] aspect-square rounded-2xl">
-          {avatar && <img src={avatar} alt="hi" className="object-cover h-full w-full" />}
+          {avatar && <img src={avatar} alt="hi" className="object-cover h-full w-full rounded-2xl" />}
         </div>
       </div>
     </div>
