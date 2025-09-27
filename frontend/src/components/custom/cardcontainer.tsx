@@ -40,11 +40,11 @@ export default function CardContainer() {
   if (error) return <div className="text-red-600">Error: {error}</div>;
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-1">
+    <div className="flex flex-col gap-4 h-[85%] overflow-scroll shadow-inner bg-darkpink/20 p-4 rounded-2xl">
       {Object.entries(outfits).map(([key, outfit]) => (
         <article
           key={key}
-          className="rounded-xl border bg-white p-4 shadow flex"
+          className="rounded-xl border bg-white p-4 shadow flex gap-6"
         >
           <img
             src={`${outfit.thumbnail_url}`}

@@ -14,7 +14,7 @@ export default function ViewToggle({ activeView, setView }: ViewToggleProps) {
     <div className="inline-flex py-4 ">
       <div className="relative flex w-64 overflow-hidden rounded-full bg-gray-200">
         <span
-          className="pointer-events-none absolute top-0 left-0 h-full w-1/2 rounded-full bg-green transition-transform duration-300 ease-out"
+          className="pointer-events-none absolute top-0 left-0 h-full w-1/2 rounded-full bg-darkpink transition-transform duration-300 ease-out"
           style={{ transform: `translateX(${activeIndex * 100}%)` }}
         />
         {options.map((option) => (
