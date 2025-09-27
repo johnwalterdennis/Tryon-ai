@@ -7,7 +7,7 @@ import os
 from typing import List
 from fastapi.staticfiles import StaticFiles
 import json
-
+import asyncio
 
 from nano_banana import generate_fashion_image
 
@@ -96,6 +96,7 @@ async def upload_selfie(file: UploadFile = File(...)):
     
     return {"filename": temp_filename, "url": file_path}
 
+#dont use this for now
 @app.post("/generate-image/")
 async def generate_image(
     files: List[UploadFile] = File(...),
@@ -114,10 +115,54 @@ async def generate_image(
         "path": output_path,
         "url": f"/{output_path}"
     }
+
+@app.get("/generate-all-premade-outfits")
+async def generate_all_premade_outfits():
+    output_base_dir = "static/outputs/premade"
+    input_base_dir = "static/premade"
+    if not os.path.exists(input_base_dir):
+        raise HTTPException(status_code=404, detail=f"{input_base_dir} not found")
+
+    generated_outputs = []
+
+    #get all outfit_{i} directories
+    outfit_dirs = [d for d in os.listdir(input_base_dir) if d.startswith("outfit_") and os.path.isdir(os.path.join(input_base_dir, d))]
+
+    async def process_outfit(outfit_dir):
+        outfit_path = os.path.join(input_base_dir, outfit_dir)
+        image_files = [
+            os.path.join(outfit_path, f)
+            for f in os.listdir(outfit_path)
+            if f.lower().endswith((".jpg", ".jpeg", ".png", ".webp")) and f != "thumbnail.jpg"
+        ]
+        if len(image_files) <= 1:
+            return None
+
+        output_filename = f"{outfit_dir}.png"
+
+        # call Gemini
+        output_path = await generate_fashion_image(
+            file_paths=[current_user_selfie_path] + image_files,
+            output_dir=output_base_dir,
+            output_image_filename=output_filename
+        )
+
+        return {
+            "outfit_dir": outfit_dir,
+            "output_path": output_path,
+            "url": f"/{output_path}"
+        }
+
+    # Run all outfits in parallel
+    tasks = [process_outfit(d) for d in outfit_dirs]
+    results = await asyncio.gather(*tasks)
+
+    generated_outputs = [r for r in results if r]
+
+    return {"generated_outputs": generated_outputs}
     
 @app.get("/get-premade-outfit-details")
 async def get_premade_outfit_details():
     with open("items.json", "r") as f:
         res = json.load(f)
     return res
-
