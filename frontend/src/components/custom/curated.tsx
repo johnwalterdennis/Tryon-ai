@@ -9,11 +9,16 @@ export default function Curated(props: Property) {
   const { selectedOutfitID, setSelectedOutfitID } = props;
   return (
     <div className="h-[90%]">
-      <CardContainer selectedOutfitID={selectedOutfitID} setSelectedOutfitID={setSelectedOutfitID}/>
+      <CardContainer
+        selectedOutfitID={selectedOutfitID}
+        setSelectedOutfitID={setSelectedOutfitID}
+      />
       <div className="flex justify-center items-center mt-4">
-        <button className="bg-green w-full p-4 text-white rounded-2xl font-bold hover:scale-[1.02] transition-all">
-          Checkout
-        </button>
+        {selectedOutfitID && (
+          <button className="bg-green w-full p-4 text-white rounded-2xl font-bold hover:scale-[1.02] transition-all">
+            Checkout
+          </button>
+        )}
       </div>
     </div>
   );

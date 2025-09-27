@@ -17,7 +17,7 @@ export default function TryOn() {
         {view === "curated" ? <Curated selectedOutfitID={selectedOutfit} setSelectedOutfitID={setSelectedOutfit}/> : <Custom />}
       </div>
       <div className="w-[55%]">
-        <Avatar />
+        <Avatar selectedOutfitID={selectedOutfit} />
       </div>
     </div>
   );
