@@ -20,7 +20,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 USER_UPLOAD_DIR = "static/user_uploads"
 SELFIE_UPLOAD_DIR = "static/selfie_uploads"
-CURRENT_USER_SELFIE_PATH = "static/selfie_uploads/jaiden.jpg"
+CURRENT_USER_SELFIE_PATH = "static/selfie_uploads/wes.jpg"
 custom_outfit_counter = 0
 PREMADE_OUTFIT_THUMBNAIL_DIR = "static/premade/thumbnails"
 CUSTOM_OUTFIT_THUMBNAIL_DIR = "static/custom/thumbnails"
