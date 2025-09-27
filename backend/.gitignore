@@ -214,3 +214,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# static files
+static/user_uploads/
+static/selfie_uploads/
