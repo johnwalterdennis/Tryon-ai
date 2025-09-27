@@ -8,12 +8,13 @@ type View = "curated" | "custom";
 
 export default function TryOn() {
   const [view, setView] = useState<View>("curated");
+  const [selectedOutfit, setSelectedOutfit] = useState<string | undefined>(undefined);
 
   return (
     <div className="flex p-6 h-screen">
       <div className="w-[45%] h-full">
         <ViewToggle activeView={view} setView={setView} />
-        {view === "curated" ? <Curated /> : <Custom />}
+        {view === "curated" ? <Curated selectedOutfitID={selectedOutfit} setSelectedOutfitID={setSelectedOutfit}/> : <Custom />}
       </div>
       <div className="w-[55%]">
         <Avatar />
