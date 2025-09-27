@@ -8,9 +8,9 @@ export default function Avatar() {
     }, []);
 
     return(
-        <div>
+        <div className="h-full">
             {
-                !avatar ? <div className="bg-darkpink/20 w-48 h-48 rounded-2xl"></div> : <img src="" alt="hi"/>
+                !avatar ? <div className="flex w-full h-full justify-center items-center" ><div className="bg-darkpink/20 w-[32rem] h-[76.5%] aspect-square rounded-2xl"></div></div> : <img src="" alt="hi"/>
             }
         </div>
     )
