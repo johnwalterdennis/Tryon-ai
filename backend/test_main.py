@@ -1,9 +1,15 @@
 import requests
 
-url = "http://127.0.0.1:8000/upload/"
-file_path = "my_image.webp"
+url = "http://127.0.0.1:8000/generate-image/"
 
-with open(file_path, "rb") as f:
-    response = requests.post(url, files={"file": f})
+file_paths = ["pranjal.webp", "suit_jacket.jpg", "suit_pants.webp"]
+files = [("files", (path, open(path, "rb"), "image/webp")) for path in file_paths]
+
+data = {
+    "premade": "false",
+    "image_name": "suited_pranjal"
+}
+
+response = requests.post(url, files=files, data=data)
 
 print(response.json())

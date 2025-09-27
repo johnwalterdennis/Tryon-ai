@@ -1,10 +1,12 @@
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, UploadFile, HTTPException, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 import uuid
 import shutil
 import os
 from typing import List
+
+from nano_banana import generate_fashion_image
 
 
 app = FastAPI()
@@ -84,3 +86,22 @@ async def upload_selfie(file: UploadFile = File(...)):
     current_user_selfie_path = file_path
     
     return {"filename": temp_filename, "url": file_path}
+
+@app.post("/generate-image/")
+async def generate_image(
+    files: List[UploadFile] = File(...),
+    premade: bool = Form(True),
+    image_name: str = Form("temp")
+):
+    output_dir = "static/outputs/premade" if premade else "static/outputs/custom"
+
+    output_path = generate_fashion_image(files, output_dir=output_dir, output_image_filename=image_name)
+
+    if not output_path or not os.path.isfile(output_path):
+        raise HTTPException(status_code=500, detail="Gemini did not output an image")
+
+    return {
+        "filename": os.path.basename(output_path),
+        "path": output_path,
+        "url": f"/{output_path}"
+    }
