@@ -5,16 +5,25 @@ import uuid
 import shutil
 import os
 from typing import List
+from fastapi.staticfiles import StaticFiles
+import json
+
 
 from nano_banana import generate_fashion_image
 
 
 app = FastAPI()
 
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
 USER_UPLOAD_DIR = "static/user_uploads"
 SELFIE_UPLOAD_DIR = "static/selfie_uploads"
 current_user_selfie_path = None
 custom_outfit_counter = 0
+PREMADE_OUTFIT_THUMBNAIL_DIR = "static/premade/thumbnails"
+CUSTOM_OUTFIT_THUMBNAIL_DIR = "static/custom/thumbnails"
 
 app.add_middleware(
     CORSMiddleware,
@@ -105,3 +114,10 @@ async def generate_image(
         "path": output_path,
         "url": f"/{output_path}"
     }
+    
+@app.get("/get-premade-outfit-thumbnails")
+async def get_premade_outfit_thumbnails():
+    with open("items.json", "r") as f:
+        res = json.load(f)
+    return res
+
