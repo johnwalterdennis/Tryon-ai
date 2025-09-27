@@ -9,7 +9,18 @@ export default function Avatar({selectedOutfitID} : Property) {
     const [avatar, setAvatar] = useState<string | undefined>(undefined);
 
     useEffect(()=>{
-        console.log(selectedOutfitID)
+        async function fetchAvatar() {
+            try {
+                const result = await axios.get("http://localhost:8000/get-generated-outfit", {
+                    params: { outfit: selectedOutfitID}
+                });
+                console.log(result)
+            } catch {
+                console.log("fail")
+            }
+        }
+
+        fetchAvatar();
     }, [selectedOutfitID]);
 
     return(
