@@ -35,22 +35,9 @@ response = client.models.generate_content(
     contents=contents,
 )
 
-# Extract image(s) from response
-image_parts = [
-    part.inline_data.data
-    for part in response.candidates[0].content.parts
-    if part.inline_data
-]
-
-if image_parts:
-    # Decode base64 → bytes → PIL image
-    image_data = base64.b64decode(image_parts[0])
-    image = Image.open(BytesIO(image_data))
-
-    # Save and preview
-    output_path = "static/user_upload/fashion_ecommerce_shot.png"
-    image.save(output_path)
-    image.show()
-    print(f"✅ Image saved to {output_path}")
-else:
-    print("❌ No image generated")
+for part in response.candidates[0].content.parts:
+    if part.text is not None:
+        print(part.text)
+    elif part.inline_data is not None:
+        image = Image.open(BytesIO(part.inline_data.data))
+        image.save("generated_image.png")
