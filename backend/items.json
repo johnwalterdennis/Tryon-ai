@@ -34,5 +34,48 @@
         "thumbnail_url": "http://localhost:8000/static/premade/outfit_5/thumbnail.png",
         "vendor": "H&M",
         "description": "A classic beige trench coat featuring a double-breasted design and a belted waist, perfect for timeless style and versatile layering."
+    },
+    "outfit_6": {
+        "price": 199.99,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_6/thumbnail.png",
+        "vendor": "H&M",
+        "description": "A bold, edgy look featuring a sleek bomber jacket paired with tech wear pants, perfect for making a statement with modern street style."
+    },
+    "outfit_7": {
+        "price": 499.99,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_7/thumbnail.png",
+        "vendor": "American Eagle",
+        "description": "A bold and edgy streetwear look, perfect for those who want to stand out with modern urban style."
+    },
+    "outfit_8": {
+        "price": 259.49,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_8/thumbnail.png",
+        "vendor": "Pacsun",
+        "description": "A trendy soft boy streetwear outfit featuring relaxed-fit pants, a pastel oversized sweater, and chunky sneakers—perfect for a laid-back, effortlessly cool vibe."
+    },
+    "outfit_9": {
+        "price": 399.99,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_9/thumbnail.png",
+        "vendor": "Urban Outfitters",
+        "description": "A Radiohead-inspired, super grunge emo outfit that makes a bold and daring statement—featuring distressed black jeans, a vintage band tee, layered flannel, chunky combat boots, and silver chain accessories for an unapologetically edgy look."
+    },
+    "outfit_10": {
+        "price": 299.99,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_10/thumbnail.png",
+        "vendor": "Urban Outfitters",
+        "description": "A modern, casual outfit featuring a cropped leather jacket, relaxed-fit jeans, and a stylish purse—perfect for an effortlessly chic everyday look."
+    },
+    "outfit_11": {
+        "price": 199.99,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_11/thumbnail.png",
+        "vendor": "Pacsun",
+        "description": "A classy old money-inspired outfit featuring a premium leather jacket, sophisticated glasses, and timeless loafers for an effortlessly elegant look."
+    },
+    "outfit_12": {
+        "price": 109.49,
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_12/thumbnail.png",
+        "vendor": "Gap",
+        "description": "A women's casual outfit featuring a vibrant red sweater cardigan, classic jeans, and a stylish purse—perfect for a comfortable yet chic everyday look."
     }
+
 }
