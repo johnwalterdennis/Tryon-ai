@@ -3,6 +3,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type CartItem = { id: string; name: string; price: number; qty: number };
 
@@ -59,7 +60,24 @@ export default function Checkout() {
   };
 
   return (
-    <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 p-6 md:grid-cols-2">
+    <div className="flex min-h-screen items-center justify-center bg-lightpink/40">
+      {/* Back Arrow */}
+      <Link
+        href="/"
+        className="absolute top-10 left-10 flex items-center justify-center w-10 h-10 rounded-full hover:bg-darkpink/10 transition-colors z-20"
+        aria-label="Back"
+      >
+        <svg
+          className="w-6 h-6 text-darkpink"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </Link>
+      <div className="mx-auto grid w-full max-w-4xl grid-cols-1 gap-8 rounded-3xl bg-white/80 p-8 shadow-xl backdrop-blur md:grid-cols-2">
       {/* Form */}
       <div className="space-y-4">
         <h1 className="text-xl font-semibold">Checkout</h1>
@@ -127,30 +145,30 @@ export default function Checkout() {
         <div className="flex items-center gap-2">
           <input
             placeholder="Promo code"
-            className="w-40 rounded-md border px-3 py-2 bg-white"
+            className="w-40 rounded-md border px-3 py-2 bg-white text-sm font-mono"
             value={promo}
             onChange={(e) => setPromo(e.target.value)}
           />
-          <span className="text-xs text-gray-500">Try: <code>TRYON10</code></span>
+          <button className="text-sm bg-darkpink/20 font-semibold text-darkpink border-1 rounded-2xl p-2 hover:scale-[1.02] transition-all cursor-pointer"> <code>Apply</code></button>
         </div>
 
         <button
           disabled={!canSubmit}
           onClick={pay}
-          className={`w-full rounded-md px-4 py-2 text-white ${
-            canSubmit ? "bg-black hover:opacity-90" : "bg-green hover:scale-105 transition-all"
+          className={`w-full font-semibold rounded-md px-4 py-3 text-white cursor-pointer ${
+            canSubmit ? "bg-black hover:opacity-90" : "bg-green hover:scale-[1.02] transition-all"
           }`}
         >
           {processing ? "Processing..." : "Pay now"}
         </button>
 
         <p className="text-xs text-gray-500">
-          Demo only. Replace with a real payment flow (Stripe Payment Element) before going live.
+          <code>Demo only. Replace with a real payment flow (Stripe Payment Element) before going live.</code>
         </p>
       </div>
 
       {/* Summary */}
-      <div className="rounded-lg border p-4 bg-white">
+      <div className="rounded-2xl border p-6 shadow-sm bg-white">
         <h2 className="mb-3 text-lg font-semibold">Order summary</h2>
         <ul className="divide-y">
           {cart.map((item) => (
@@ -186,6 +204,7 @@ export default function Checkout() {
             <span>${total.toFixed(2)}</span>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

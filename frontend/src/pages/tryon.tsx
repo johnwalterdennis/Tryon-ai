@@ -11,7 +11,7 @@ export default function TryOn() {
   const [selectedOutfit, setSelectedOutfit] = useState<string | undefined>(undefined);
 
   return (
-    <div className="flex p-6 h-screen">
+    <div className="flex p-6 pl-16 h-screen">
       <div className="w-[45%] h-full">
         <ViewToggle activeView={view} setView={setView} />
         {view === "curated" ? <Curated selectedOutfitID={selectedOutfit} setSelectedOutfitID={setSelectedOutfit}/> : <Custom />}

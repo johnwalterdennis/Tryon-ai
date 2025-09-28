@@ -53,7 +53,7 @@ export default function CardContainer({selectedOutfitID, setSelectedOutfitID} : 
       {Object.entries(outfits).map(([key, outfit]) => (
         <button
           key={key}
-          className={`${key===selectedOutfitID ? "border-darkpink/50 border-[1px] !bg-lightpink" : ""} rounded-xl bg-white p-4 shadow flex gap-6 hover:scale-[1.02] transition-all`}
+          className={`${key===selectedOutfitID ? "border-darkpink/50 border-[1px] !bg-lightpink" : ""} rounded-xl bg-white p-4 shadow flex gap-6 hover:scale-[1.02] transition-all cursor-pointer`}
           onClick={()=>clickCard(key)}
         >
           <img
