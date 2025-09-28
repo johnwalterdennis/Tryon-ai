@@ -20,7 +20,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 USER_UPLOAD_DIR = "static/user_uploads"
 SELFIE_UPLOAD_DIR = "static/selfie_uploads"
-CURRENT_USER_SELFIE_PATH = "static/selfie_uploads/selfie.png"
+CURRENT_USER_SELFIE_PATH = ""
 custom_outfit_counter = 0
 PREMADE_OUTFIT_THUMBNAIL_DIR = "static/premade/thumbnails"
 CUSTOM_OUTFIT_THUMBNAIL_DIR = "static/custom/thumbnails"
@@ -91,8 +91,8 @@ async def upload_selfie(file: UploadFile = File(...)):
         
     
     # update the global user selfie path
-    global current_user_selfie_path
-    current_user_selfie_path = file_path
+    global CURRENT_USER_SELFIE_PATH
+    CURRENT_USER_SELFIE_PATH = file_path
     
     return {"filename": temp_filename, "url": file_path}
 
