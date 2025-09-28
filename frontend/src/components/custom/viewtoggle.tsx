@@ -40,7 +40,7 @@ export default function ViewToggle({ activeView, setView }: ViewToggleProps) {
             key={option}
             type="button"
             onClick={() => setView(option)}
-            className={`relative z-10 flex-1 rounded-full py-3 text-sm font-semibold uppercase tracking-wide transition-colors duration-300 ${
+            className={`relative z-10 flex-1 rounded-full py-3 text-sm font-bold uppercase tracking-wide cursor-pointer transition-colors duration-300 ${
               activeView === option ? "text-white" : "text-gray-600"
             }`}
             aria-pressed={activeView === option}

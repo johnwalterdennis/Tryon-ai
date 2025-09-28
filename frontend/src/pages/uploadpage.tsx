@@ -72,7 +72,7 @@ export default function UploadPage() {
   return (
     <div className="p-6">
       <Dialog open={open} onOpenChange={(v) => setOpen(v)}>
-        <DialogContent className="sm:max-w-lg" lock>
+        <DialogContent className="sm:max-w-lg bg-white" lock>
           <DialogHeader>
             <DialogTitle>Upload a photo</DialogTitle>
           </DialogHeader>
@@ -119,11 +119,11 @@ export default function UploadPage() {
             <button
               onClick={handleConfirm}
               disabled={!file}
-              className={`rounded-xl px-4 py-2 text-sm text-white ${
-                file ? "bg-black hover:opacity-90" : "bg-darkpink"
+              className={`rounded-xl px-6 py-3 text-sm text-white transition-all hover:scale-[1.02] hover:cursor-pointer ${
+                file ? "bg-darkpink hover:opacity-90" : "bg-darkpink"
               }`}
             >
-            <Link href="/tryon" >
+            <Link href="/tryon" className="font-semibold">
               Continue
             </Link>
             </button>

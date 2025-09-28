@@ -132,13 +132,13 @@ export default function Checkout() {
             value={promo}
             onChange={(e) => setPromo(e.target.value)}
           />
-          <button className="text-sm bg-darkpink/20 font-semibold text-darkpink border-1 rounded-2xl p-2 hover:scale-[1.02] transition-all"> <code>Apply</code></button>
+          <button className="text-sm bg-darkpink/20 font-semibold text-darkpink border-1 rounded-2xl p-2 hover:scale-[1.02] transition-all cursor-pointer"> <code>Apply</code></button>
         </div>
 
         <button
           disabled={!canSubmit}
           onClick={pay}
-          className={`w-full font-semibold rounded-md px-4 py-3 text-white ${
+          className={`w-full font-semibold rounded-md px-4 py-3 text-white cursor-pointer ${
             canSubmit ? "bg-black hover:opacity-90" : "bg-green hover:scale-[1.02] transition-all"
           }`}
         >
