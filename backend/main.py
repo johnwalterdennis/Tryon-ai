@@ -20,14 +20,14 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 USER_UPLOAD_DIR = "static/user_uploads"
 SELFIE_UPLOAD_DIR = "static/selfie_uploads"
-CURRENT_USER_SELFIE_PATH = "static/selfie_uploads/wes.jpg"
+CURRENT_USER_SELFIE_PATH = "static/selfie_uploads/selfie.png"
 custom_outfit_counter = 0
 PREMADE_OUTFIT_THUMBNAIL_DIR = "static/premade/thumbnails"
 CUSTOM_OUTFIT_THUMBNAIL_DIR = "static/custom/thumbnails"
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -13,9 +13,9 @@
     },
     "outfit_2": {
         "price": 224.99,
-        "thumbnail_url": "http://localhost:8000/static/premade/outfit_2/thumbnail.png",
+        "thumbnail_url": "http://localhost:8000/static/premade/outfit_2/thumbnail.jpg",
         "vendor": "Zara",
-        "description": "A one-piece asymmetric tulle top paired with sleek leather shorts for a bold, modern look."
+        "description": "An elegant suit for a fancy occasion"
     },
     "outfit_3": {
         "price": 159.49,

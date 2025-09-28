@@ -57,16 +57,47 @@ export default function UploadPage() {
   const handleConfirm = async () => {
     if (!file) return;
 
-    // Simple client-only handoff:
-    // Save a blob URL for the file so /tryon can read it from sessionStorage.
-    const blobUrl = previewUrl ?? URL.createObjectURL(file);
-    sessionStorage.setItem("tryon:photoUrl", blobUrl);
+    try {
+    const controller = new AbortController();
+    const form = new FormData();
+    form.append("file", file, file.name); // key must be "file" to match FastAPI param
 
-    // If you later add an API upload, replace the above with a POST
-    // and pass an ?id=... to /tryon.
+    const res = await fetch(
+      `http://localhost:8000/upload-selfie/`,
+      {
+        method: "POST",
+        body: form,
+        signal: controller.signal,
+        // DO NOT set Content-Type; the browser will set the multipart boundary
+      }
+    );
 
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(`Upload failed: ${res.status} ${text}`);
+    }
+    
+    const data: { filename: string; url: string } = await res.json();
+    console.log(res)
+    
+    const res2 = await fetch(
+      `http://localhost:8000/generate-all-premade-outfits`,
+      {
+        method: "PUT"
+      }
+    )
+
+    // Hand off to /tryon. You can pass the filename via query or sessionStorage.
+    sessionStorage.setItem("tryon:selfieFilename", data.filename);
+    sessionStorage.setItem("tryon:selfiePath", data.url); // if you serve it statically
     setOpen(false);
-    router.push("/tryon");
+
+    router.push(`/tryon`);
+  } catch (err) {
+    console.error(err);
+    alert("Upload failed. Please try again.");
+  }
+
   };
 
   return (
@@ -123,9 +154,8 @@ export default function UploadPage() {
                 file ? "bg-black hover:opacity-90" : "bg-darkpink"
               }`}
             >
-            <Link href="/tryon" >
               Continue
-            </Link>
+            
             </button>
           </div>
         </DialogContent>
