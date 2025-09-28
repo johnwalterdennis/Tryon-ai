@@ -224,3 +224,6 @@ static/selfie_uploads/
 node_modules/
 package-lock.json
 package.json
+
+#images
+static/outputs/premade/
