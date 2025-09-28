@@ -16,7 +16,7 @@ export default function Curated(props: Property) {
       <Link href="/checkout" >
       <div className="flex justify-center items-center mt-4">
         {selectedOutfitID && (
-          <button className="bg-green w-full p-4 text-white rounded-2xl font-bold hover:scale-[1.02] transition-all">
+          <button className="bg-green w-full p-4 text-white rounded-2xl font-bold hover:scale-[1.02] transition-all cursor-pointer">
             
               Checkout
             
